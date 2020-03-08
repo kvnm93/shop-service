@@ -47,12 +47,12 @@ public class ApiGatewayRestController {
         return this.shopService.upsertArticle(article);
     }
 
-    @PostMapping("/order/")
+    @PostMapping("/api/v1/order/")
     public Order createOrder(@RequestBody Order order) {
         return shopService.createOrder(order);
     }
 
-    @GetMapping("/order/")
+    @GetMapping("/api/v1/order/")
     public List<Order> getOrdersByCustomerId(@RequestParam UUID customerId) {
         return shopService.getOrdersByCustomerId(customerId);
     }
