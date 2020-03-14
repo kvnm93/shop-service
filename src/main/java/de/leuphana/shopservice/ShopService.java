@@ -40,7 +40,7 @@ public class ShopService {
     public void init() {
         this.webClient = WebClient
                 .builder()
-                .baseUrl("http://localhost:8050/")
+                .baseUrl("http://api-gateway:8050/")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
