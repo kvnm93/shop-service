@@ -39,6 +39,8 @@ public class AuthWebFilter implements Filter {
 
         if (bearerToken == null || bearerToken.equals("")) {
             response.setStatus(403);
+            filterChain.doFilter(request, response);
+            return;
         }
 
         try {
@@ -47,6 +49,8 @@ public class AuthWebFilter implements Filter {
             filterChain.doFilter(request, response);
         } catch (Exception e) {
             response.setStatus(403);
+            filterChain.doFilter(request, response);
         }
     }
 }
+
