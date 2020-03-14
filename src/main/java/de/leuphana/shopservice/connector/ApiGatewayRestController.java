@@ -27,31 +27,37 @@ public class ApiGatewayRestController {
         return Jwts.builder().setSubject(customer.getCustomerId().toString()).signWith(shopService.getKey()).compact();
     }
 
-    @PostMapping("/api/v1/auth/login")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping("/api/v1/auth/login/")
     public String loginUser (@RequestBody LoginDetails loginDetails) {
         return this.toJWT(shopService.loginUser(loginDetails));
     }
 
-    @GetMapping("/api/v1/article")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/api/v1/article/")
     public List<Article> getAllArticles() {
         return this.shopService.getAllArticles();
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/api/v1/article/{articleId}/")
     public Article updateArticle(@PathVariable("articleId") UUID articleId, @RequestBody Article article) {
         return this.shopService.updateArticleByArticleId(articleId, article);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/api/v1/article/")
     public Article updateArticle(@RequestBody Article article) {
         return this.shopService.upsertArticle(article);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/api/v1/order/")
     public Order createOrder(@RequestBody Order order) {
         return shopService.createOrder(order);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/api/v1/order/")
     public List<Order> getOrdersByCustomerId(@RequestParam UUID customerId) {
         return shopService.getOrdersByCustomerId(customerId);
